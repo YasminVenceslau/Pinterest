@@ -1,4 +1,15 @@
 {% if widget.value %}
+<div></div>
+  <div style="
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #fff;
+        ">
+    <h5 style="margin-bottom: 8px; font-weight: 500; color: #e60023;">Editar</h5>
+    
+  </div>
+<div></div>
   <div style="
         display: flex;
         flex-direction: column;
@@ -12,7 +23,6 @@
         margin-left: auto;
         margin-right: auto;
         ">
-    <h5 style="margin-bottom: 8px; font-weight: 500; color: #333;">Editar</h5>
     <img src="{{ widget.value.url }}" alt="Imagem atual"
          style="max-width: 200px; max-height: 200px; border-radius: 12px; object-fit: cover;">
   </div>

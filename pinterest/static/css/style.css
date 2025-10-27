@@ -1,6 +1,10 @@
-/* --- Estilo Pinterest --- */
+/* =========================
+   Estilo Pinterest
+========================= */
+
+/* --- Navbar fixa --- */
 .pinterest-navbar {
-  background-color: rgba(255, 255, 255, 0.98) !important; /* branco sólido e suave */
+  background-color: rgba(255, 255, 255, 0.98); /* branco quase sólido */
   backdrop-filter: blur(6px); /* efeito vidro */
   border-bottom: 1px solid #ddd;
   padding: 0.5rem 1rem;
@@ -8,14 +12,11 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 9999; /* mantém sempre por cima */
+  z-index: 9999; /* sempre por cima */
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-
-
-
-/* Logo */
+/* Logo com hover */
 .logo-img {
   transition: transform 0.3s ease;
 }
@@ -23,13 +24,13 @@
   transform: scale(1.05);
 }
 
-/* Barra de pesquisa */
+/* Barra de pesquisa central */
 .search-bar {
   width: 55%;
   max-width: 700px;
   background-color: #efefef;
+  border-radius: 25px;
 }
-
 .search-input {
   border-radius: 25px;
   background-color: #efefef;
@@ -38,41 +39,493 @@
   font-size: 0.95rem;
   width: 100%;
 }
-
 .search-input:focus {
   outline: none;
   background-color: #fff;
-  box-shadow: 0 0 4px rgba(230, 0, 35, 0.3);
+  box-shadow: 0 0 5px rgba(230, 0, 35, 0.3);
 }
 
-/* Links */
+/* Links da navbar */
 .nav-link {
   border-radius: 20px;
   padding: 0.4rem 1rem;
   transition: all 0.2s ease;
 }
-
 .hover-link:hover {
   background-color: #ffe2e2;
   color: #e60023 !important;
 }
 
-/* Avatar */
+/* Avatar do usuário */
 .profile-avatar {
   border: 2px solid transparent;
   transition: all 0.3s ease;
 }
-
 .profile-avatar:hover {
   border-color: #e60023;
   transform: scale(1.08);
   box-shadow: 0 0 6px rgba(230, 0, 35, 0.4);
 }
+
 /* === Corpo da página === */
 body {
-  padding-top: 80px; /* evita que o conteúdo suba por baixo da navbar */
-  background-image: url('../images/fundo.jpg'); /* exemplo */
+  padding-top: 80px; /* espaço para navbar fixa */
+  background-image: url('../images/fundo.jpg');
   background-size: cover;
   background-repeat: no-repeat;
-  background-attachment: scroll; /* <- evita o problema visual */
+  background-attachment: fixed; /* efeito Pinterest */
+  font-family: Arial, sans-serif;
+}
+
+/* =========================
+   Formulário centralizado
+========================= */
+.col-md-6.offset-md-3 {
+  background-color: rgba(255, 255, 255, 0.95); /* efeito leve de vidro */
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-top: 50px; /* espaço extra do topo */
+}
+
+/* Título do formulário */
+.col-md-6.offset-md-3 h1 {
+  text-align: center;
+  color: #e60023;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+/* Inputs do formulário */
+.col-md-6.offset-md-3 input,
+.col-md-6.offset-md-3 select,
+.col-md-6.offset-md-3 textarea {
+  border-radius: 25px;
+  border: 1px solid #ddd;
+  padding: 0.6rem 1rem;
+  width: 100%;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+.col-md-6.offset-md-3 input:focus,
+.col-md-6.offset-md-3 select:focus,
+.col-md-6.offset-md-3 textarea:focus {
+  outline: none;
+  border-color: #e60023;
+  box-shadow: 0 0 5px rgba(230, 0, 35, 0.3);
+}
+
+/* Botão de submit */
+.col-md-6.offset-md-3 .btn-secondary {
+  display: block;
+  width: 100%;
+  background-color: #e60023;
+  border: none;
+  color: #fff;
+  padding: 0.6rem 0;
+  font-size: 1rem;
+  border-radius: 25px;
+  transition: transform 0.2s ease;
+}
+.col-md-6.offset-md-3 .btn-secondary:hover {
+  transform: scale(1.05);
+}
+
+/* =========================
+   Responsividade
+========================= */
+@media (max-width: 992px) {
+  .search-bar {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* Mensagem de usuário já logado */
+.logged-in-message {
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-top: 50px;
+}
+
+.logged-in-message h2 {
+  color: #e60023;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.logged-in-message p {
+  color: #333;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.logged-in-message .btn-primary {
+  background-color: #e60023;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  border-radius: 25px;
+  transition: transform 0.2s ease;
+}
+
+.logged-in-message .btn-primary:hover {
+  transform: scale(1.05);
+}
+
+.logged-in-message .icon-container img {
+  animation: bounce 1s infinite;
+}
+
+/* animação leve para ícone */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Grid de perfis */
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+/* Card do perfil */
+.profile-card {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.profile-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Imagem do perfil */
+.profile-image img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Informações do perfil */
+.profile-info {
+  padding: 1rem;
+  text-align: center;
+}
+
+.profile-info h5 {
+  font-weight: bold;
+  color: #e60023;
+  margin-bottom: 0.3rem;
+}
+
+.username-link a {
+  text-decoration: none;
+  color: #555;
+  transition: color 0.2s ease;
+}
+
+.username-link a:hover {
+  color: #e60023;
+}
+
+.profile-info .text-muted {
+  font-size: 0.85rem;
+  color: #888;
+  margin-top: 0.5rem;
+}
+
+/* =========================
+   Grid de perfis estilo Pinterest
+========================= */
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+/* Card do perfil */
+.profile-card {
+  background-color: rgba(255, 255, 255, 0.97);
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.profile-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* Imagem do perfil */
+.profile-image img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.profile-card:hover .profile-image img {
+  transform: scale(1.05);
+}
+
+/* Informações do perfil */
+.profile-info {
+  padding: 1rem;
+  text-align: center;
+}
+
+.profile-info h5 {
+  font-weight: bold;
+  color: #e60023;
+  margin-bottom: 0.3rem;
+  font-size: 1.1rem;
+}
+
+.username-link a {
+  text-decoration: none;
+  color: #555;
+  transition: color 0.2s ease;
+}
+
+.username-link a:hover {
+  color: #e60023;
+}
+
+.profile-info .text-muted {
+  font-size: 0.85rem;
+  color: #888;
+  margin-top: 0.5rem;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .profile-image img {
+    height: 180px;
+  }
+}
+
+@media (max-width: 576px) {
+  .profile-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1rem;
+  }
+  .profile-image img {
+    height: 150px;
+  }
+}
+
+/* Container geral */
+.container.text-center {
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+
+/* Feed de Pins */
+.alert {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.alert:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* Foto do usuário */
+.col-1 img {
+  object-fit: cover;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.col-1 img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 8px rgba(230,0,35,0.4);
+}
+
+/* Imagem do Pin */
+.col-11 img.img-fluid {
+  border-radius: 15px;
+  max-height: 300px;
+  width: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.col-11 img.img-fluid:hover {
+  transform: scale(1.03);
+}
+
+/* Descrição e informações */
+.col-11 p {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.col-11 small {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.col-11 small a {
+  text-decoration: none;
+  margin-left: 0.3rem;
+}
+
+.col-11 small a:hover i {
+  transform: scale(1.2);
+  transition: transform 0.2s ease;
+}
+
+/* Botão de criação de Pin */
+.col-4 form {
+  background-color: rgba(255,255,255,0.95);
+  padding: 1rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.col-4 button.btn-primary {
+  width: 100%;
+  margin-top: 0.5rem;
+  border-radius: 25px;
+  background-color: #e60023;
+  border: none;
+  transition: transform 0.2s ease;
+}
+
+.col-4 button.btn-primary:hover {
+  transform: scale(1.05);
+}
+
+/* Container principal */
+.pins-container {
+  display: flex;
+  gap: 2rem;
+  padding: 1rem;
+}
+
+/* Masonry grid de Pins */
+.masonry-grid {
+  column-count: 3; /* Número de colunas */
+  column-gap: 1.5rem;
+  flex: 1;
+}
+
+.masonry-item {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 1.5rem;
+  background-color: rgba(255,255,255,0.95);
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.masonry-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* Imagem do Pin */
+.pin-image {
+  width: 100%;
+  display: block;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.masonry-item:hover .pin-image {
+  transform: scale(1.03);
+}
+
+/* Foto do usuário */
+.pin-user img {
+  object-fit: cover;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pin-user img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 8px rgba(230,0,35,0.4);
+}
+
+/* Card body */
+.card-body {
+  padding: 0.75rem 1rem;
+}
+
+.card-body p {
+  margin-bottom: 0.5rem;
+}
+
+.card-body small a {
+  margin-left: 0.3rem;
+}
+
+.card-body small a:hover i {
+  transform: scale(1.2);
+  transition: transform 0.2s ease;
+}
+
+/* Formulário de criação de Pin */
+.pin-form {
+  flex-basis: 300px;
+  background-color: rgba(255,255,255,0.95);
+  padding: 1rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  height: fit-content;
+}
+
+.pin-form button.btn-primary {
+  width: 100%;
+  margin-top: 0.5rem;
+  border-radius: 25px;
+  background-color: #e60023;
+  border: none;
+  transition: transform 0.2s ease;
+}
+
+.pin-form button.btn-primary:hover {
+  transform: scale(1.05);
+}
+
+/* Responsividade */
+@media (max-width: 992px) {
+  .pins-container {
+    flex-direction: column-reverse;
+  }
+  .masonry-grid {
+    column-count: 2;
+  }
+  .pin-form {
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .masonry-grid {
+    column-count: 1;
+  }
 }
