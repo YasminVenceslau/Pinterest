@@ -1,0 +1,78 @@
+/* --- Estilo Pinterest --- */
+.pinterest-navbar {
+  background-color: rgba(255, 255, 255, 0.98) !important; /* branco sólido e suave */
+  backdrop-filter: blur(6px); /* efeito vidro */
+  border-bottom: 1px solid #ddd;
+  padding: 0.5rem 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999; /* mantém sempre por cima */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+/* Logo */
+.logo-img {
+  transition: transform 0.3s ease;
+}
+.logo-img:hover {
+  transform: scale(1.05);
+}
+
+/* Barra de pesquisa */
+.search-bar {
+  width: 55%;
+  max-width: 700px;
+  background-color: #efefef;
+}
+
+.search-input {
+  border-radius: 25px;
+  background-color: #efefef;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.95rem;
+  width: 100%;
+}
+
+.search-input:focus {
+  outline: none;
+  background-color: #fff;
+  box-shadow: 0 0 4px rgba(230, 0, 35, 0.3);
+}
+
+/* Links */
+.nav-link {
+  border-radius: 20px;
+  padding: 0.4rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.hover-link:hover {
+  background-color: #ffe2e2;
+  color: #e60023 !important;
+}
+
+/* Avatar */
+.profile-avatar {
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.profile-avatar:hover {
+  border-color: #e60023;
+  transform: scale(1.08);
+  box-shadow: 0 0 6px rgba(230, 0, 35, 0.4);
+}
+/* === Corpo da página === */
+body {
+  padding-top: 80px; /* evita que o conteúdo suba por baixo da navbar */
+  background-image: url('../images/fundo.jpg'); /* exemplo */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: scroll; /* <- evita o problema visual */
+}
