@@ -2,67 +2,30 @@
 {% load static %}
 {% block content %}
 
-<div class="pins-container">
-  <!-- Feed de Pins -->
-  <div class="masonry-grid">
-    {% if pins %}
-      {% for pin in pins %}
-        <div class="masonry-item card">
-          <!-- Foto do usuário -->
-          <div class="pin-user text-center mb-2">
-            <a href="{% url 'profile' pin.user.id %}">
-              {% if pin.user.profile.profile_image %}
-                <img src="{{ pin.user.profile.profile_image.url }}" 
-                     class="rounded-circle" 
-                     width="50" height="50" 
-                     alt="{{ pin.user.username }}">
-              {% else %}
-                <img src="{% static 'images/pessoa.png' %}" 
-                     class="rounded-circle" 
-                     width="50" height="50" 
-                     alt="{{ pin.user.username }}">
-              {% endif %}
-            </a>
-          </div>
+<div class="container">
+  <h1 class="text-center mb-4">Perfis</h1>
 
-          <!-- Imagem do Pin -->
-          <img src="{{ pin.image.url }}" class="pin-image" alt="{{ pin.description }}">
-
-          <!-- Descrição e likes -->
-          <div class="card-body">
-            <p>{{ pin.description }}</p>
-            <small class="text-muted d-flex justify-content-between align-items-center">
-              <span>({{ pin.created_at|date:"d/m/Y H:i" }}) by @{{ pin.user.username }}</span>
-              <span>
-                {{ pin.number_of_likes }} Likes
-                {% if user in pin.likes.all %}
-                  <a href="{% url 'pin_like' pin.id %}">
-                    <i class="fa-solid fa-heart text-danger"></i>
-                  </a>
-                {% else %}
-                  <a href="{% url 'pin_like' pin.id %}">
-                    <i class="fa-regular fa-heart text-danger"></i>
-                  </a>
-                {% endif %}
-              </span>
-            </small>
-          </div>
+  <div class="profile-grid">
+    {% for profile in profiles %}
+    <div class="profile-card">
+      <div class="profile-image">
+        {% if profile.profile_image %}
+          <img src="{{ profile.profile_image.url }}" alt="{{ profile.user.username }}">
+        {% else %}
+          <img src="{% static 'images/pessoa.png' %}" alt="{{ profile.user.username }}">
+        {% endif %}
+      </div>
+      <div class="profile-info">
+        <h5>{{ profile.user.first_name }} {{ profile.user.last_name }}</h5>
+        <div class="username-link">
+          <a href="{% url 'profile' profile.user.id %}">@{{ profile.user.username }}</a>
         </div>
-      {% endfor %}
-    {% else %}
-      <p class="text-center">Nenhum pin encontrado.</p>
-    {% endif %}
-  </div>
-
-  <!-- Formulário de criação de Pin -->
-  <div class="pin-form">
-    {% if form %}
-      <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Postar Pin!</button>
-      </form>
-    {% endif %}
+        
+      </div>
+    </div>
+    {% empty %}
+      <p class="text-center">Nenhum perfil encontrado.</p>
+    {% endfor %}
   </div>
 </div>
 

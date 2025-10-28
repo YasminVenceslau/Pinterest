@@ -2,71 +2,58 @@
 {% load static %}
 {% block content %}
 
-<div class="container text-center">
-  <div class="row">
-    <div class="col-8">
-      <h1>Pins</h1>
-      <br />
-      {% for pin in pins %}
-      <div class="alert alert-light border" role="alert">
-        <div class="container">
-          <div class="row">
-            <!-- Foto do usuário -->
-            <div class="col-1">
+<div class="container py-4">
+  <!-- Centraliza os pins -->
+  <div class="row justify-content-center">
+
+    <div class="col-md-10">
+      {% if pins %}
+      <div class="masonry-grid">
+        {% for pin in pins %}
+        <div class="masonry-item">
+
+          <!-- Usuário e Likes -->
+          <div class="pin-user mb-2 d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center">
               <a href="{% url 'profile' pin.user.id %}">
                 {% if pin.user.profile.profile_image %}
-                  <img src="{{ pin.user.profile.profile_image.url }}"
-                       width="50" height="50"
-                       class="rounded-circle"
-                       alt="{{ pin.user.username }}">
+                  <img src="{{ pin.user.profile.profile_image.url }}" width="40" height="40" class="rounded-circle" alt="{{ pin.user.username }}">
                 {% else %}
-                  <img src="{% static 'images/pessoa.png' %}"
-                       width="50" height="50"
-                       class="rounded-circle"
-                       alt="{{ pin.user.username }}">
+                  <img src="{% static 'images/pessoa.png' %}" width="40" height="40" class="rounded-circle" alt="{{ pin.user.username }}">
                 {% endif %}
               </a>
+              <span class="ms-2">@{{ pin.user.username }}</span>
             </div>
 
-            <!-- Conteúdo do Pin -->
-            <div class="col-11 text-start">
-              <!-- Imagem do Pin -->
-              <img src="{{ pin.image.url }}" class="img-fluid mb-2" alt="{{ pin.description }}">
-              <p>{{ pin.description }}</p>
-              
-              <small class="text-muted">
-                ({{ pin.created_at|date:"d/m/Y H:i" }}) by @{{ pin.user.username }} - 
-                {{ pin.number_of_likes }} Likes
-
-                {% if user in pin.likes.all %}
-                <a href="{% url 'pin_like' pin.id %}">
-                  <i class="fa-solid fa-heart text-danger"></i>
+            <div>
+              {% if user in pin.likes.all %}
+                <a href="{% url 'pin_like' pin.id %}" class="text-danger fw-bold d-flex align-items-center gap-1" style="text-decoration: none;">
+                  <i class="fa-solid fa-heart"></i> {{ pin.number_of_likes }}
                 </a>
-                {% else %}
-                <a href="{% url 'pin_like' pin.id %}">
-                  <i class="fa-regular fa-heart text-danger"></i>
+              {% else %}
+                <a href="{% url 'pin_like' pin.id %}" class="text-danger fw-bold d-flex align-items-center gap-1" style="text-decoration: none;">
+                  <i class="fa-regular fa-heart"></i> {{ pin.number_of_likes }}
                 </a>
-                {% endif %}
-              </small>
+              {% endif %}
             </div>
-            <br /><br />
           </div>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
 
-    <!-- Formulário de criação de Pin -->
-    <div class="col-4">
-      <br /><br /><br />
-      {% if form %}
-      <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Postar Pin!</button>
-      </form>
+          <!-- Imagem do Pin -->
+          <img src="{{ pin.image.url }}" alt="{{ pin.description }}" class="pin-image">
+
+          <!-- Descrição -->
+          <div class="card-body p-2 text-center">
+            <p>{{ pin.description }}</p>
+          </div>
+
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+        <p class="text-center">Nenhum pin encontrado.</p>
       {% endif %}
     </div>
+
   </div>
 </div>
 

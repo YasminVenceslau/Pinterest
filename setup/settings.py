@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'pinterest.apps.PinterestConfig',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [

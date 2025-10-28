@@ -73,23 +73,53 @@ def unfollow(request, pk):
 
 # Perfil do usuário
 def profile(request, pk):
-    if request.user.is_authenticated:
-        profile = Profile.objects.get(user_id=pk)
-        pins = Pin.objects.filter(user_id=pk).order_by("-created_at")
-
-        if request.method == "POST":
-            action = request.POST.get('follow')
-            current_user_profile = request.user.profile
-            if action == "unfollow":
-                current_user_profile.follows.remove(profile)
-            elif action == "follow":
-                current_user_profile.follows.add(profile)
-            current_user_profile.save()
-
-        return render(request, "profile.html", {"profile": profile, "pins": pins})
-    else:
+    if not request.user.is_authenticated:
         messages.warning(request, "Você precisa estar logado para ver perfis.")
         return redirect('home')
+
+    # Obtém o perfil e pins do usuário
+    profile = get_object_or_404(Profile, user_id=pk)
+    pins = Pin.objects.filter(user_id=pk).order_by("-created_at")
+
+    # Formulário de criação de pin (só aparece se for o dono do perfil)
+    form = PinForm() if request.user.id == profile.user.id else None
+
+    # --- Se for um POST (enviou algum formulário) ---
+    if request.method == "POST":
+
+        # 🧡 FOLLOW / UNFOLLOW
+        if 'follow' in request.POST:
+            action = request.POST.get('follow')
+            current_user_profile = request.user.profile
+
+            if action == "unfollow":
+                current_user_profile.follows.remove(profile)
+                messages.info(request, f"Você deixou de seguir {profile.user.username}.")
+            elif action == "follow":
+                current_user_profile.follows.add(profile)
+                messages.success(request, f"Agora você segue {profile.user.username}!")
+
+            current_user_profile.save()
+            return redirect('profile', pk=pk)
+
+        # 📌 CRIAR NOVO PIN
+        elif request.user.id == profile.user.id:
+            form = PinForm(request.POST, request.FILES)
+            if form.is_valid():
+                new_pin = form.save(commit=False)
+                new_pin.user = request.user
+                new_pin.save()
+                messages.success(request, "Seu Pin foi postado com sucesso!")
+                return redirect('profile', pk=pk)
+            else:
+                messages.error(request, "Erro ao criar o Pin. Verifique os campos e tente novamente.")
+
+    # --- Retorna o template ---
+    return render(request, "profile.html", {
+        "profile": profile,
+        "pins": pins,
+        "form": form,
+    })
 
 
 # Curtir / descurtir Pin

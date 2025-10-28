@@ -1,5 +1,5 @@
 /* =========================
-   Estilo Pinterest
+   Estilo Pinterest - Refatorado
 ========================= */
 
 /* --- Navbar fixa --- */
@@ -30,6 +30,7 @@
   max-width: 700px;
   background-color: #efefef;
   border-radius: 25px;
+  transition: all 0.2s ease;
 }
 .search-input {
   border-radius: 25px;
@@ -38,6 +39,7 @@
   padding: 0.6rem 1.2rem;
   font-size: 0.95rem;
   width: 100%;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 .search-input:focus {
   outline: none;
@@ -69,7 +71,7 @@
 
 /* === Corpo da página === */
 body {
-  padding-top: 80px; /* espaço para navbar fixa */
+  padding-top: 60px; /* espaço para navbar fixa */
   background-image: url('../images/fundo.jpg');
   background-size: cover;
   background-repeat: no-repeat;
@@ -85,10 +87,9 @@ body {
   padding: 2rem;
   border-radius: 15px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  margin-top: 50px; /* espaço extra do topo */
+  margin-top: 50px;
 }
 
-/* Título do formulário */
 .col-md-6.offset-md-3 h1 {
   text-align: center;
   color: #e60023;
@@ -96,7 +97,6 @@ body {
   margin-bottom: 1.5rem;
 }
 
-/* Inputs do formulário */
 .col-md-6.offset-md-3 input,
 .col-md-6.offset-md-3 select,
 .col-md-6.offset-md-3 textarea {
@@ -106,6 +106,7 @@ body {
   width: 100%;
   margin-bottom: 1rem;
   font-size: 0.95rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 .col-md-6.offset-md-3 input:focus,
 .col-md-6.offset-md-3 select:focus,
@@ -132,16 +133,8 @@ body {
 }
 
 /* =========================
-   Responsividade
+   Mensagem de usuário logado
 ========================= */
-@media (max-width: 992px) {
-  .search-bar {
-    width: 100%;
-    margin-bottom: 0.5rem;
-  }
-}
-
-/* Mensagem de usuário já logado */
 .logged-in-message {
   background-color: rgba(255, 255, 255, 0.95);
   padding: 2rem;
@@ -149,19 +142,16 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   margin-top: 50px;
 }
-
 .logged-in-message h2 {
   color: #e60023;
   font-weight: bold;
   margin-bottom: 0.5rem;
 }
-
 .logged-in-message p {
   color: #333;
   font-size: 1rem;
   margin-bottom: 1rem;
 }
-
 .logged-in-message .btn-primary {
   background-color: #e60023;
   border: none;
@@ -169,77 +159,16 @@ body {
   border-radius: 25px;
   transition: transform 0.2s ease;
 }
-
 .logged-in-message .btn-primary:hover {
   transform: scale(1.05);
 }
-
 .logged-in-message .icon-container img {
   animation: bounce 1s infinite;
 }
-
 /* animação leve para ícone */
 @keyframes bounce {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
-}
-
-/* Grid de perfis */
-.profile-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 1.5rem;
-  padding: 1rem;
-}
-
-/* Card do perfil */
-.profile-card {
-  background-color: rgba(255, 255, 255, 0.95);
-  border-radius: 15px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.profile-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-}
-
-/* Imagem do perfil */
-.profile-image img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  display: block;
-}
-
-/* Informações do perfil */
-.profile-info {
-  padding: 1rem;
-  text-align: center;
-}
-
-.profile-info h5 {
-  font-weight: bold;
-  color: #e60023;
-  margin-bottom: 0.3rem;
-}
-
-.username-link a {
-  text-decoration: none;
-  color: #555;
-  transition: color 0.2s ease;
-}
-
-.username-link a:hover {
-  color: #e60023;
-}
-
-.profile-info .text-muted {
-  font-size: 0.85rem;
-  color: #888;
-  margin-top: 0.5rem;
 }
 
 /* =========================
@@ -252,7 +181,6 @@ body {
   padding: 1rem;
 }
 
-/* Card do perfil */
 .profile-card {
   background-color: rgba(255, 255, 255, 0.97);
   border-radius: 15px;
@@ -261,13 +189,10 @@ body {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
 }
-
 .profile-card:hover {
   transform: translateY(-7px);
   box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
-
-/* Imagem do perfil */
 .profile-image img {
   width: 100%;
   height: 220px;
@@ -275,161 +200,46 @@ body {
   display: block;
   transition: transform 0.3s ease;
 }
-
 .profile-card:hover .profile-image img {
   transform: scale(1.05);
 }
-
-/* Informações do perfil */
 .profile-info {
   padding: 1rem;
   text-align: center;
 }
-
 .profile-info h5 {
   font-weight: bold;
   color: #e60023;
   margin-bottom: 0.3rem;
   font-size: 1.1rem;
 }
-
 .username-link a {
   text-decoration: none;
   color: #555;
   transition: color 0.2s ease;
 }
-
 .username-link a:hover {
   color: #e60023;
 }
-
 .profile-info .text-muted {
   font-size: 0.85rem;
   color: #888;
   margin-top: 0.5rem;
 }
 
-/* Responsividade */
-@media (max-width: 768px) {
-  .profile-image img {
-    height: 180px;
-  }
-}
-
-@media (max-width: 576px) {
-  .profile-grid {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 1rem;
-  }
-  .profile-image img {
-    height: 150px;
-  }
-}
-
-/* Container geral */
-.container.text-center {
-  padding-top: 1rem;
-  padding-bottom: 2rem;
-}
-
-/* Feed de Pins */
-.alert {
-  background-color: rgba(255, 255, 255, 0.95);
-  border-radius: 15px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  padding: 1rem;
-  margin-bottom: 1.5rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.alert:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-}
-
-/* Foto do usuário */
-.col-1 img {
-  object-fit: cover;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.col-1 img:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 8px rgba(230,0,35,0.4);
-}
-
-/* Imagem do Pin */
-.col-11 img.img-fluid {
-  border-radius: 15px;
-  max-height: 300px;
-  width: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-.col-11 img.img-fluid:hover {
-  transform: scale(1.03);
-}
-
-/* Descrição e informações */
-.col-11 p {
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.col-11 small {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 0.85rem;
-  color: #555;
-}
-
-.col-11 small a {
-  text-decoration: none;
-  margin-left: 0.3rem;
-}
-
-.col-11 small a:hover i {
-  transform: scale(1.2);
-  transition: transform 0.2s ease;
-}
-
-/* Botão de criação de Pin */
-.col-4 form {
-  background-color: rgba(255,255,255,0.95);
-  padding: 1rem;
-  border-radius: 15px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-.col-4 button.btn-primary {
-  width: 100%;
-  margin-top: 0.5rem;
-  border-radius: 25px;
-  background-color: #e60023;
-  border: none;
-  transition: transform 0.2s ease;
-}
-
-.col-4 button.btn-primary:hover {
-  transform: scale(1.05);
-}
-
-/* Container principal */
+/* =========================
+   Feed de Pins
+========================= */
 .pins-container {
   display: flex;
   gap: 2rem;
   padding: 1rem;
 }
-
-/* Masonry grid de Pins */
 .masonry-grid {
-  column-count: 3; /* Número de colunas */
+  column-count: 3;
   column-gap: 1.5rem;
   flex: 1;
 }
-
 .masonry-item {
   display: inline-block;
   width: 100%;
@@ -439,13 +249,10 @@ body {
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 .masonry-item:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
-
-/* Imagem do Pin */
 .pin-image {
   width: 100%;
   display: block;
@@ -454,41 +261,40 @@ body {
   object-fit: cover;
   transition: transform 0.3s ease;
 }
-
 .masonry-item:hover .pin-image {
   transform: scale(1.03);
 }
-
-/* Foto do usuário */
 .pin-user img {
   object-fit: cover;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 .pin-user img:hover {
   transform: scale(1.1);
   box-shadow: 0 0 8px rgba(230,0,35,0.4);
 }
-
-/* Card body */
 .card-body {
   padding: 0.75rem 1rem;
 }
-
 .card-body p {
   margin-bottom: 0.5rem;
 }
-
+.card-body small {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #555;
+}
 .card-body small a {
+  text-decoration: none;
   margin-left: 0.3rem;
 }
-
 .card-body small a:hover i {
   transform: scale(1.2);
   transition: transform 0.2s ease;
 }
 
-/* Formulário de criação de Pin */
+/* Botão de criação de Pin */
 .pin-form {
   flex-basis: 300px;
   background-color: rgba(255,255,255,0.95);
@@ -497,7 +303,6 @@ body {
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   height: fit-content;
 }
-
 .pin-form button.btn-primary {
   width: 100%;
   margin-top: 0.5rem;
@@ -506,26 +311,318 @@ body {
   border: none;
   transition: transform 0.2s ease;
 }
-
 .pin-form button.btn-primary:hover {
   transform: scale(1.05);
 }
 
-/* Responsividade */
+/* =========================
+   Mini Profile Card
+========================= */
+.mini-profile-card {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  padding: 0.75rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+.mini-profile-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+.mini-profile-card a {
+  display: block;
+  font-weight: bold;
+  color: #e60023;
+  text-decoration: none;
+  margin-bottom: 0.3rem;
+  transition: color 0.2s ease;
+}
+.mini-profile-card a:hover {
+  color: #b3001b;
+}
+.mini-profile-card .btn {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 20px;
+  transition: transform 0.2s ease;
+}
+.mini-profile-card .btn:hover {
+  transform: scale(1.05);
+}
+
+/* Grid responsivo de mini-cards */
+.row-cols-2 .col,
+.row-cols-md-3 .col {
+  display: flex;
+  justify-content: center;
+}
+
+/* =========================
+   Responsividade geral
+========================= */
+@media (max-width: 1200px) {
+  .masonry-grid { column-count: 2; }
+}
+
 @media (max-width: 992px) {
-  .pins-container {
-    flex-direction: column-reverse;
-  }
-  .masonry-grid {
-    column-count: 2;
-  }
-  .pin-form {
-    margin-bottom: 2rem;
-  }
+  .search-bar { width: 100%; margin-bottom: 0.5rem; }
+  .pins-container { flex-direction: column-reverse; }
+  .pin-form { margin-bottom: 2rem; }
+}
+
+@media (max-width: 768px) {
+  .profile-image img { height: 180px; }
 }
 
 @media (max-width: 576px) {
-  .masonry-grid {
-    column-count: 1;
+  .masonry-grid { column-count: 1; }
+  .profile-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1rem; }
+  .profile-image img { height: 150px; }
+}
+
+/* =========================
+   Follow / Follows Card
+========================= */
+.follow-card,
+.follows-card {
+  flex-basis: 300px; /* mesmo tamanho que o pin-form */
+  background-color: rgba(255, 255, 255, 0.95); /* fundo translúcido */
+  padding: 1rem; /* espaço interno */
+  border-radius: 15px; /* cantos arredondados */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* sombra suave */
+  height: fit-content;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+.follow-card:hover,
+.follows-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* Conteúdo interno do card */
+.follow-card h5,
+.follows-card h5 {
+  font-weight: bold;
+  color: #e60023;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+.follow-card p,
+.follows-card p {
+  font-size: 0.95rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+/* Botão dentro do card */
+.follow-card .btn,
+.follows-card .btn {
+  width: 100%;
+  border-radius: 25px;
+  background-color: #e60023;
+  border: none;
+  color: #fff;
+  padding: 0.5rem 0;
+  font-size: 0.9rem;
+  transition: transform 0.2s ease;
+}
+.follow-card .btn:hover,
+.follows-card .btn:hover {
+  transform: scale(1.05);
+}
+
+/* =========================
+   Mini-cards uniformes dentro de .pin-form
+========================= */
+.pin-form .mini-profile-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* mantém elementos distribuídos */
+  height: 130px; /* altura uniforme */
+  padding: 0.75rem;
+  background-color: rgba(255,255,255,0.95);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.pin-form .mini-profile-card a {
+  font-weight: bold;
+  color: #e60023;
+  text-decoration: none;
+  margin-bottom: 0.5rem;
+  transition: color 0.2s ease;
+}
+
+.pin-form .mini-profile-card a:hover {
+  color: #b3001b;
+}
+
+.pin-form .mini-profile-card .btn {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 20px;
+  transition: transform 0.2s ease;
+}
+
+.pin-form .mini-profile-card .btn:hover {
+  transform: scale(1.05);
+}
+
+/* Para manter cards uniformes em telas menores */
+@media (max-width: 576px) {
+  .pin-form .mini-profile-card {
+    height: 120px;
   }
+}
+
+/* =========================
+   Follow / Follows Cards Simplificados
+========================= */
+.follow-card,
+.follows-card {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  padding: 0.4rem;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100px; /* altura menor */
+  width: 110px; /* largura menor */
+}
+
+.follow-card:hover,
+.follows-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.12);
+}
+
+.follow-card a,
+.follows-card a {
+  font-weight: bold;
+  color: #e60023;
+  font-size: 0.85rem;
+  text-decoration: none;
+  margin-bottom: 0.3rem;
+}
+
+.follow-card .btn,
+.follows-card .btn {
+  font-size: 0.65rem;
+  padding: 0.15rem 0.3rem;
+  border-radius: 12px;
+  width: 60%; /* menor que antes */
+  margin: 0 auto;
+  background-color: #e60023;
+  color: #fff;
+  border: none;
+  transition: transform 0.2s ease;
+}
+
+.follow-card .btn:hover,
+.follows-card .btn:hover {
+  transform: scale(1.05);
+}
+
+/* Grid responsivo - 2 cards por linha */
+.row-cols-2 .col,
+.row-cols-md-2 .col {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+/* Mobile adjustments */
+@media (max-width: 576px) {
+  .follow-card,
+  .follows-card {
+    height: 65px;
+    width: 100px;
+  }
+}
+
+.masonry-grid {
+    column-count: 2; /* número de colunas */
+    column-gap: 1.5rem;
+}
+
+.masonry-item {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 1.5rem;
+    background-color: rgba(255,255,255,0.95);
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.masonry-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.pin-image {
+    width: 100%;
+    display: block;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.masonry-item:hover .pin-image {
+    transform: scale(1.03);
+}
+
+/* Responsividade */
+@media (max-width: 1200px) {
+    .masonry-grid { column-count: 2; }
+}
+
+@media (max-width: 768px) {
+    .masonry-grid { column-count: 1; }
+}
+
+.pin-date {
+  color: #999;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  transition: color 0.3s ease;
+}
+
+.pin-date i {
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+.pin-date:hover {
+  color: #666;
+}
+/* Centralizar masonry grid */
+.masonry-grid {
+    column-count: 2; /* número de colunas */
+    column-gap: 1.5rem;
+    max-width: 1200px;  /* largura máxima da grid */
+    margin: 0 auto;      /* centraliza horizontalmente */
+    padding: 0.5rem;
+}
+
+/* Mantém responsividade */
+@media (max-width: 1200px) {
+    .masonry-grid { column-count: 2; }
+}
+
+@media (max-width: 768px) {
+    .masonry-grid { column-count: 1; }
 }
