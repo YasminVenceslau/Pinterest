@@ -626,3 +626,56 @@ body {
 @media (max-width: 768px) {
     .masonry-grid { column-count: 1; }
 }
+
+/* =========================
+   Rodapé estilo Pinterest
+========================= */
+footer.footer {
+  background-color: #f8f9fa;
+  border-top: 1px solid #ddd;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+footer.footer a {
+  color: #e60023;
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+footer.footer a:hover {
+  color: #b3001b;
+  transform: scale(1.05);
+}
+
+footer.footer .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+footer.footer .footer-links {
+  display: flex;
+  gap: 1rem;
+}
+
+footer.footer i {
+  margin-right: 0.25rem;
+  transition: transform 0.2s ease;
+}
+
+footer.footer i:hover {
+  transform: scale(1.1);
+}
+
+@media (min-width: 768px) {
+  footer.footer .container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+footer.footer .container > * {
+  margin: 0.25rem 0;
+}
