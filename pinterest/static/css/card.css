@@ -1,0 +1,147 @@
+/* =========================
+   Mini Profile Card
+========================= */
+.mini-profile-card {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  padding: 0.75rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+.mini-profile-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+.mini-profile-card a {
+  display: block;
+  font-weight: bold;
+  color: #e60023;
+  text-decoration: none;
+  margin-bottom: 0.3rem;
+  transition: color 0.2s ease;
+}
+.mini-profile-card a:hover {
+  color: #b3001b;
+}
+.mini-profile-card .btn {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 20px;
+  transition: transform 0.2s ease;
+}
+.mini-profile-card .btn:hover {
+  transform: scale(1.05);
+}
+
+/* Grid responsivo de mini-cards */
+.row-cols-2 .col,
+.row-cols-md-3 .col {
+  display: flex;
+  justify-content: center;
+}
+/* =========================
+   Mini-cards uniformes dentro de .pin-form
+========================= */
+.pin-form .mini-profile-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* mantém elementos distribuídos */
+  height: 130px; /* altura uniforme */
+  padding: 0.75rem;
+  background-color: rgba(255,255,255,0.95);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.pin-form .mini-profile-card a {
+  font-weight: bold;
+  color: #e60023;
+  text-decoration: none;
+  margin-bottom: 0.5rem;
+  transition: color 0.2s ease;
+}
+
+.pin-form .mini-profile-card a:hover {
+  color: #b3001b;
+}
+
+.pin-form .mini-profile-card .btn {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 20px;
+  transition: transform 0.2s ease;
+}
+
+.pin-form .mini-profile-card .btn:hover {
+  transform: scale(1.05);
+}
+
+
+
+
+.masonry-item {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 1.5rem;
+    background-color: rgba(255,255,255,0.95);
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 8px !important;
+}
+
+.masonry-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    
+}
+
+.pin-image {
+    width: 100%;
+    display: block;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.masonry-item:hover .pin-image {
+    transform: scale(1.03);
+    
+}
+
+
+
+.pin-date {
+  color: #999;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  transition: color 0.3s ease;
+}
+
+.pin-date i {
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+.pin-date:hover {
+  color: #666;
+}
+/* Centralizar masonry grid */
+.masonry-grid {
+    column-count: 2; /* número de colunas */
+    column-gap: 1.5rem;
+    max-width: 1200px;  /* largura máxima da grid */
+    margin: 0 auto;      /* centraliza horizontalmente */
+    padding: 0.5rem;
+    
+}
+
+

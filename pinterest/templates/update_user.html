@@ -1,8 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 
 <div class="col-md-6 offset-md-3">
-  <h1>Update User</h1>
-  <br />
+  <h1>Atualizar</h1>
 
   <form method="POST" action="" enctype="multipart/form-data">
     {% csrf_token %} {{ user_form.as_p }}
@@ -10,7 +9,7 @@
     {{ profile_form.as_p}}
 
     <br /><br />
-    <button type="submit" class="btn btn-secondary">Update Profile</button>
+    <button type="submit" class="btn btn-secondary">Atualizar</button>
     <br /><br />
   </form>
 </div>

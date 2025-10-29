@@ -11,7 +11,7 @@ class CustomClearableFileInput(ClearableFileInput):
 # --- Formulário para atualizar perfil ---
 class ProfilePicForm(forms.ModelForm):
     profile_image = forms.ImageField(
-        label="Foto de Perfil",
+        label="Nova foto de Perfil ",
         required=False,
         widget=CustomClearableFileInput(attrs={
             'class': 'form-control pinterest-input',
@@ -81,7 +81,7 @@ class SignUpForm(UserCreationForm):
              '<li>Deve ter 8+ caracteres.</li>'
              '<li>Inclua letras, números e símbolo.</li></ul>'),
             ('password2', 'Confirme sua senha',
-             '<span class="form-text text-muted small">Digite a mesma senha novamente.</span>')
+             '<span class="form-text text-muted small">Digite a mesma senha.</span>')
         ]:
             field = self.fields[field_name]
             field.widget.attrs.update({

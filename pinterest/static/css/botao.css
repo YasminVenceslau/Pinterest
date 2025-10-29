@@ -1,0 +1,20 @@
+/* Botão de criação de Pin */
+.pin-form {
+  flex-basis: 300px;
+  background-color: rgba(255,255,255,0.95);
+  padding: 1rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  height: fit-content;
+}
+.pin-form button.btn-primary {
+  width: 100%;
+  margin-top: 0.5rem;
+  border-radius: 25px;
+  background-color: #e60023;
+  border: none;
+  transition: transform 0.2s ease;
+}
+.pin-form button.btn-primary:hover {
+  transform: scale(1.05);
+}

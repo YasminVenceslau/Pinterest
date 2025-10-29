@@ -6,7 +6,7 @@
   
   <h2>Você já está logado!</h2>
   <p>Que tal explorar o Pinterest agora mesmo?</p>
-  <a href="{% url 'home' %}" class="btn btn-primary mt-3">Ir para a Home</a>
+  <a href="{% url 'home' %}" class="btn btn-primary mt-3">Ir para a os Pins</a>
 </div>
 
 {% else %}
@@ -21,7 +21,7 @@
         type="text"
         class="form-control"
         name="username"
-        placeholder="Enter Your Username"
+        placeholder="Coloque seu nome de Usuário "
       />
     </div>
     <div class="mb-3">
@@ -29,11 +29,11 @@
         type="password"
         class="form-control"
         name="password"
-        placeholder="Enter Your Password"
+        placeholder="Coloque sua senha"
       />
     </div>
     <br />
-    <button type="submit" class="btn btn-secondary">Submit</button>
+    <button type="submit" class="btn btn-secondary">Confirmar</button>
   </form>
 </div>
 

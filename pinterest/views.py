@@ -28,7 +28,7 @@ def profile_list(request):
         profiles = Profile.objects.exclude(user=request.user)
         return render(request, 'profile_list.html', {"profiles": profiles})
     else:
-        messages.warning(request, "Você precisa estar logado para ver os pins.")
+        messages.warning(request, "Precisa estar logado.")
         return redirect('home')
 
 
@@ -40,7 +40,7 @@ def follow(request, pk):
         request.user.profile.save()
         messages.success(request, f"Agora você segue {profile.user.username}!")
         return redirect(request.META.get("HTTP_REFERER"))
-    messages.warning(request, "Faça login para seguir usuários.")
+    messages.warning(request, "Precisa estar logado.")
     return redirect('home')
 
 def followers(request, pk):
@@ -48,7 +48,7 @@ def followers(request, pk):
         profile = get_object_or_404(Profile, user_id=pk)
         followers_list = profile.followed_by.all()  # todos que seguem este perfil
         return render(request, "followers.html", {"profile": profile, "followers": followers_list})
-    messages.warning(request, "Faça login para ver os seguidores.")
+    messages.warning(request, "Precisa estar logado.")
     return redirect('home')
 
 # Lista de quem o usuário segue
@@ -57,7 +57,7 @@ def follows(request, pk):
         profile = get_object_or_404(Profile, user_id=pk)
         follows_list = profile.follows.all()  # todos que este perfil segue
         return render(request, "follows.html", {"profile": profile, "follows": follows_list})
-    messages.warning(request, "Faça login para ver os perfis seguidos.")
+    messages.warning(request, "Precisa estar logado.")
     return redirect('home')
 
 def unfollow(request, pk):
@@ -67,7 +67,7 @@ def unfollow(request, pk):
         request.user.profile.save()
         messages.success(request, f"Você deixou de seguir {profile.user.username}.")
         return redirect(request.META.get("HTTP_REFERER"))
-    messages.warning(request, "Faça login para deixar de seguir.")
+    messages.warning(request, "Precisa estar logado.")
     return redirect('home')
 
 
@@ -109,7 +109,7 @@ def profile(request, pk):
                 new_pin = form.save(commit=False)
                 new_pin.user = request.user
                 new_pin.save()
-                messages.success(request, "Seu Pin foi postado com sucesso!")
+                messages.success(request, "Seu Pin foi Adicionado!")
                 return redirect('profile', pk=pk)
             else:
                 messages.error(request, "Erro ao criar o Pin. Verifique os campos e tente novamente.")
@@ -131,7 +131,7 @@ def pin_like(request, pk):
         else:
             pin.likes.add(request.user)
         return redirect(request.META.get("HTTP_REFERER"))
-    messages.warning(request, "Não está Logado para poder dar Like")
+    messages.warning(request, "Precisa estar logado.")
     return redirect('home')
 
 
@@ -145,7 +145,7 @@ def delete_pin(request, pk):
         else:
             messages.error(request, "Você não pode excluir este Pin.")
         return redirect(request.META.get("HTTP_REFERER"))
-    messages.warning(request, "Faça login para excluir pins.")
+    messages.warning(request, "Precisa estar logado.")
     return redirect('home')
 
 
@@ -162,7 +162,7 @@ def edit_pin(request, pk):
             return render(request, 'edit_pin.html', {'pin': pin, 'form': form})
         messages.error(request, "Você não pode editar este Pin.")
         return redirect('home')
-    messages.warning(request, "Faça login para continuar.")
+    messages.warning(request, "Precisa estar logado.")
     return redirect('home')
 
 
@@ -174,9 +174,9 @@ def login_user(request):
         user = authenticate(request, username=username, password=password)
         if user:
             login(request, user)
-            messages.success(request, "Login efetuado com sucesso!")
+            messages.success(request, "Bem-Vindo(a)!")
             return redirect('home')
-        messages.error(request, "Usuário ou senha incorretos.")
+        messages.error(request, "Usuário ou senha incorretos!")
         return redirect('login')
     return render(request, "login.html")
 
@@ -212,7 +212,7 @@ def update_user(request):
             user_form.save()
             profile_form.save()
             login(request, current_user)
-            messages.success(request, "Seu perfil foi atualizado com sucesso!")
+            messages.success(request, "Seu perfil foi atualizado.")
             return redirect('home')
 
         return render(request, "update_user.html", {
@@ -220,6 +220,6 @@ def update_user(request):
             'profile_form': profile_form
         })
     else:
-        messages.warning(request, "Faça login para editar seu perfil.")
+        messages.warning(request, "Precisa estar logado.")
         return redirect('home')
 
