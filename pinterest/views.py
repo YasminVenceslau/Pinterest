@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 
 from .models import Profile, Pin
 from .forms import PinForm, SignUpForm, ProfilePicForm
+from django.http import JsonResponse
 
 # Página inicial: feed de pins
 def home(request):
