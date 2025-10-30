@@ -1,24 +1,17 @@
 from pathlib import Path
 import os
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# Caminho base do projeto (pasta que contém o manage.py)
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
+# --- CONFIGURAÇÕES BÁSICAS ---
 SECRET_KEY = 'django-insecure-s(7q)zasc(e)e-fph59qy#f=w3frrk0i1^kie2lor#y69ky@za'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
+DEBUG = True  # ❗ Em produção (PythonAnywhere), idealmente usar False
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'yasminV.pythonanywhere.com']
 
 
-# Application definition
-
+# --- APPS INSTALADOS ---
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -26,10 +19,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'pinterest.apps.PinterestConfig',
+    'pinterest.apps.PinterestConfig',  # Seu app principal
     'django.contrib.humanize',
 ]
 
+
+# --- MIDDLEWARE ---
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -40,12 +35,19 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'setup.urls'
 
+# --- URLS E WSGI ---
+ROOT_URLCONF = 'setup.urls'
+WSGI_APPLICATION = 'setup.wsgi.application'
+
+
+# --- TEMPLATES ---
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, "bookstore", "templantes")],
+        # Corrigido: o caminho 'bookstore/templantes' era incorreto.
+        # Se você usa apenas os templates dos apps, pode deixar vazio.
+        'DIRS': [BASE_DIR / 'templates'],  # ✅ pasta 'templates' na raiz do projeto
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -58,62 +60,48 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'setup.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
+# --- BANCO DE DADOS ---
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
 
-# Password validation
-# https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
-
+# --- VALIDAÇÃO DE SENHAS ---
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/5.0/topics/i18n/
-
-LANGUAGE_CODE = 'en-us'
-
+# --- INTERNACIONALIZAÇÃO ---
+LANGUAGE_CODE = 'pt-br'
 TIME_ZONE = 'America/Sao_Paulo'
-
 USE_I18N = True
-
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.0/howto/static-files/
+# --- ARQUIVOS ESTÁTICOS E MÍDIA ---
+# URL base para arquivos estáticos
+STATIC_URL = '/static/'
 
-STATIC_URL = 'static/'
+# Onde ficam os arquivos estáticos locais (css/js/images)
+STATICFILES_DIRS = [
+    BASE_DIR / "static",  # pasta 'static/' dentro do projeto
+]
 
-MEDIA_URL = 'media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# Onde o collectstatic vai reunir tudo (para o PythonAnywhere)
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# Configuração para arquivos de mídia (uploads)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
+# --- CHAVE PADRÃO ---
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
